@@ -11,24 +11,32 @@
   <div><%= flight.departs%></div>
   <div>Arrival Info</div>
   <% flight.destinations.forEach((m,i) => { %>
-    <div><%= m.airport %></div>
-    <div><%= m.arrival %></div>
+  <div><%= m.airport %></div>
+  <div><%= m.arrival %></div>
   <% }); %>
 
-<br><br>
-<h3 id="add-arrival">Add Arrival</h3>
-<form id="add-arrival-form" method="POST" action="/flights/<%= flight._id %>?_method=PUT">
-  <label>Destination Airport:</label>
+  <div>
+    <h2>Seats</h2>
+    <% tickets.forEach(t => { %>
+    <h4><%= t.seat %></h4>
+    <% })%>
+  </div>
+  
+  <br><br>
+  <h3 id="add-arrival">Add Arrival</h3>
+  <form id="add-arrival-form" method="POST" action="/flights/<%= flight._id %>?_method=PUT">
+    <label>Destination Airport:</label>
     <select name="airport">
-        <option value="SEA">SEA</option>
-        <option value="DAL">DAL</option>
-        <option value="LAX">LAX</option>
-        <option value="ATX">ATX</option>
+      <option value="SEA">SEA</option>
+      <option value="DAL">DAL</option>
+      <option value="LAX">LAX</option>
+      <option value="ATX">ATX</option>
     </select>
     <label>Arrival Time:</label>
     <input type="datetime-local" name="arrival">
     <input type="submit" value="Add Destination">
-</form>
+  </form>
 
+  <a href="/flights/<%= flight._id %>/tickets/new">Get Tickets</a>
 
-<%- include('../partials/footer') %>
+  <%- include('../partials/footer') %>
